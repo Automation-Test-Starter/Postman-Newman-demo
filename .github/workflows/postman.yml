@@ -34,10 +34,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Postman-test-report
-          path: Report
+          path: allure-results
 
       - name: Upload Postman report to GitHub
         uses: actions/upload-artifact@v3
         with:
           name: Postman-test-report
-          path: Report
+          path: allure-results

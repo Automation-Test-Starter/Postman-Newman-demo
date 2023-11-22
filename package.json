@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "newman run Testcase/demo.postman_collection.json -e Env/DemoEnv.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export ./Report/Postman-newman-demo-api-testing-report.html"
+    "test": "newman run Testcase/demo.postman_collection.json -e Env/DemoEnv.postman_environment.json -r cli,allure --reporter-allure-export ./allure-results"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "allure-commandline": "^2.24.1",
     "newman": "^5.1.2",
+    "newman-reporter-allure": "^2.9.2",
     "newman-reporter-htmlextra": "^1.22.11"
   }
 }
