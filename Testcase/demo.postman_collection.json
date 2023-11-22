@@ -12,6 +12,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"//@allure.label.suite='postman newapi testing demo'",
+							"//@allure.label.story='Verify the get api return correct data'",
+							"//@allure.label.categorie=demo",
+							"//@allure.label.owner=naodeng",
+							"//@allure.label.tag=GETAPI",
+							"",
 							"pm.test(\"res.status should be 200\", function () {",
 							"  pm.response.to.have.status(200);",
 							"});",
@@ -52,6 +58,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"//@allure.label.suite=postmannewapitestingdemo",
+							"//@allure.label.story=Verifythepostapireturncorrectdata",
+							"//@allure.label.categories=demo",
+							"//@allure.label.owner=naodeng",
+							"//@allure.label.tag=POSTAPI",
+							"",
 							"pm.test(\"res.status should be 201\", function () {",
 							"  pm.response.to.have.status(201);",
 							"});",
