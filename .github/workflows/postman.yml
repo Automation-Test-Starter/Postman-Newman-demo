@@ -1,0 +1,43 @@
+name: RUN Postman API Test CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  RUN-Postman-API-Test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Installation of related packages
+        run: npm ci
+
+      - name: RUN SuperTest API Testing
+        run: npm test
+
+      - name: Archive Postman test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: Postman-test-report
+          path: Report
+
+      - name: Upload Postman report to GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: Postman-test-report
+          path: Report

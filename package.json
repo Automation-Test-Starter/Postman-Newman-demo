@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "newman run Testcase/demo.postman_collection.json -e Env/DemoEnv.postman_environment.json"
+    "test": "newman run Testcase/demo.postman_collection.json -e Env/DemoEnv.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export ./Report/Postman-newman-demo-api-testing-report.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "newman": "^6.0.0"
+    "newman": "^5.1.2",
+    "newman-reporter-htmlextra": "^1.22.11"
   }
 }
