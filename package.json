@@ -1,0 +1,15 @@
+{
+  "name": "postman-newman-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run Testcase/demo.postman_collection.json -e Env/DemoEnv.postman_environment.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "newman": "^6.0.0"
+  }
+}

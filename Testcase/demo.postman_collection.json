@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "6fea9fee-ebd0-4429-b647-21d35d4dc4ac",
+		"name": "demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-demo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"res.status should be 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"res.body should be correct\", function() {",
+							"  var data = pm.response.json();",
+							"  pm.expect(data.id).to.equal(1);",
+							"  pm.expect(data.title).to.contains('provident');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/posts/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post-demo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"res.status should be 201\", function () {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"res.body should be correct\", function() {",
+							"  var data = pm.response.json();",
+							"  pm.expect(data.id).to.equal(101);",
+							"  pm.expect(data.title).to.equal('foo');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"foo\",\n    \"body\": \"bar\",\n    \"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/posts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
