@@ -28,7 +28,13 @@ jobs:
         run: npm ci
 
       - name: RUN SuperTest API Testing
-        run: npm test
+        run: npm run test
+
+      - name: RUN SuperTest environment driven API Testing
+        run: npm run environment-driven-test
+
+      - name: RUN SuperTest data driven API Testing
+        run: npm run data-driven-test
 
       - name: Archive Postman test report
         uses: actions/upload-artifact@v3
