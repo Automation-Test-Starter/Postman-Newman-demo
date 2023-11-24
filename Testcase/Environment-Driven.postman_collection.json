@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "6fea9fee-ebd0-4429-b647-21d35d4dc4ac",
+		"name": "Environment-Driven",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-demo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//@allure.label.suite=postmannewapitestingdemo",
+							"//@allure.label.story=Verifythegetapireturncorrectdata",
+							"//@allure.label.categories=demo",
+							"//@allure.label.owner=naodeng",
+							"//@allure.label.tag=GETAPI",
+							"",
+							"const getAPIResponseStatus = parseInt(pm.environment.get(\"getAPIResponseStatus\"));",
+							"const getAPIResponseData = JSON.parse(pm.environment.get('getAPIResponseData'));",
+							"",
+							"pm.test(\"res.status should be 200\", function () {",
+							"    pm.response.to.have.status(getAPIResponseStatus);",
+							"});",
+							"",
+							"pm.test(\"res.body should be correct\", function() {",
+							"  var data = pm.response.json();",
+							"  pm.expect(data.id).to.equal(getAPIResponseData.id);",
+							"  pm.expect(data.userId).to.equal(getAPIResponseData.userId);",
+							"  pm.expect(data.title).to.equal(getAPIResponseData.title);",
+							"  pm.expect(data.body).to.equal(getAPIResponseData.body);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{getAPI}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{getAPI}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post-demo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//@allure.label.suite=postmannewapitestingdemo",
+							"//@allure.label.story=Verifythepostapireturncorrectdata",
+							"//@allure.label.categories=demo",
+							"//@allure.label.owner=naodeng",
+							"//@allure.label.tag=POSTAPI",
+							"",
+							"const postAPIResponseStatus = parseInt(pm.environment.get(\"postAPIResponseStatus\"));",
+							"const postAPIResponseData = JSON.parse(pm.environment.get('postAPIResponseData'));",
+							"",
+							"pm.test(\"res.status should be 201\", function () {",
+							"  pm.response.to.have.status(postAPIResponseStatus);",
+							"});",
+							"pm.test(\"res.body should be correct\", function() {",
+							"  var data = pm.response.json();",
+							"  pm.expect(data.id).to.equal(postAPIResponseData.id);",
+							"  pm.expect(data.userId).to.equal(postAPIResponseData.userId);",
+							"  pm.expect(data.title).to.equal(postAPIResponseData.title);",
+							"  pm.expect(data.body).to.equal(postAPIResponseData.body);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"title\": \"foo\",\n      \"body\": \"bar\",\n      \"userId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{postAPI}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{postAPI}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// 获取 请求的 api",
+					"const postAPI = pm.iterationData.get('postAPI');",
+					"// 获取 请求的 api",
+					"const getAPI = pm.iterationData.get('getAPI');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
